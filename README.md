@@ -37,6 +37,10 @@ conan recipes added and modified
 
 	used by freeimage
 
+		conan create . 9d@ -tf None -s arch=x86_64 -s compiler.cppstd=17 -s build_type=Debug --build=missing -o shared=True
+
+- freeimage (recipe: freeimage-conan)
+
 		conan create . 3.18.0@ -tf None -s arch=x86_64 -s compiler.cppstd=17 -s build_type=Debug --build=missing -o shared=True
 
 - Colmap (recipe: colmap_3_6_recipe)
