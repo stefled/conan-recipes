@@ -9,7 +9,7 @@ from shutil import copy, copyfile, rmtree
 required_conan_version = ">=1.29.1"
 
 class FreeimsageConan(ConanFile):
-    name    = "freeimage"
+    name    = "FreeImage"
     license = "FIPL(http://freeimage.sourceforge.net/freeimage-license.txt)", "GPLv2", "GPLv3"
     homepage = "https://freeimage.sourceforge.io/"
     description = "Open source image loading library"
@@ -96,7 +96,7 @@ class FreeimsageConan(ConanFile):
         if self.settings.compiler == "Visual Studio":
             self.build_visualstudio()
         else:
-            self.build_make()
+            self.build_visualstudio()
 
     def build_visualstudio(self):
         cmake = CMake(self)

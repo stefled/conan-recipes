@@ -7,6 +7,9 @@ project(FreeImage C CXX)
 if(MSVC)
   add_definitions("-D_CRT_SECURE_NO_WARNINGS")
   set(CMAKE_CXX_FLAGS "/wd4828 ${CMAKE_CXX_FLAGS}")
+else()
+  # fix linux build : int to boolean
+  set(CMAKE_CXX_FLAGS "-fpermissive ${CMAKE_CXX_FLAGS}")
 endif()
 
 # compile with cppstd=17
@@ -20,7 +23,7 @@ find_package(TIFF     REQUIRED)
 find_package(OpenJPEG REQUIRED)
 find_package(WebP     REQUIRED)
 find_package(JXR      REQUIRED)
-find_package(LibRaw   REQUIRED)
+find_package(libraw   REQUIRED)
 find_package(OpenEXR  REQUIRED)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
@@ -113,8 +116,6 @@ target_link_libraries(FreeImage ${ZLIB_LIBRARIES}
                                 ${JXR_LIBRARIES}
                                 ${libraw_LIBRARIES}
                                 ${OpenEXR_LIBRARIES})
-message(SLETODO "${PNG_FRAMEWORKS}" "${PNG_FRAMEWORK_DIRS}")
-message(SLETODO "${OpenJPEG_FRAMEWORKS}" "${OpenJPEG_FRAMEWORK_DIRS}")
 
 target_compile_definitions(FreeImage PRIVATE ${PNG_DEFINITIONS})
 

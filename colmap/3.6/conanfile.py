@@ -24,7 +24,7 @@ class ColmapConan(ConanFile):
                        "with_cuda": True,
                        "with_openmp": True,
                        "with_opengl": True,
-                       "with_profiling": True,
+                       "with_profiling": True, #colmap binary needs -lprofiler -ltcmalloc on linux
                        "with_test": False}
     exports_sources = ["CMakeLists.txt", "patches/*"]
     _source_subfolder = "source_subfolder"
@@ -37,7 +37,7 @@ class ColmapConan(ConanFile):
         #self.requires("glog/0.4.0") # depends with ceres
         #self.requires("gflags/2.2.2")  # depends with ceres
         self.requires("boost/1.75.0")
-        self.requires("freeimage/3.18.0")
+        self.requires("FreeImage/3.18.0")
         self.requires("qt/5.15.2@bincrafters/stable")
         if self.options.with_opengl:
             self.requires("glew/2.2.0")
@@ -52,10 +52,12 @@ class ColmapConan(ConanFile):
         # TODO keep ?!
         self.options["boost"].zlib=False
         self.options["boost"].bzip2=False
+        self.options["boost"].numa=False
         
         self.options["flann"].shared = self.options.shared
         self.options["boost"].shared = self.options.shared
         self.options["ceres-solver"].shared = self.options.shared
+        self.options["FreeImage"].shared = self.options.shared
         #todo : check other libs as shared?!
 
     def source(self):

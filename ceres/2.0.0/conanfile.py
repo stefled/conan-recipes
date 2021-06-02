@@ -93,6 +93,10 @@ class ceressolverConan(ConanFile):
         tools.get(**self.conan_data["sources"][self.version])
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
+        
+        os.remove(os.path.join(self._source_subfolder, "cmake/FindCXSparse.cmake"))
+        os.remove(os.path.join(self._source_subfolder, "cmake/FindGlog.cmake"))
+        os.remove(os.path.join(self._source_subfolder, "cmake/FindSuiteSparse.cmake"))
 
     def build(self):
         #Make sure that cmake finds gflags is use_gflags=True

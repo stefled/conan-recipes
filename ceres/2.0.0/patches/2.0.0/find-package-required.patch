@@ -63,7 +63,7 @@ index ea7e9b8..8ebf620 100644
 -      "Otherwise, Ceres may fail to link due to missing gflags symbols.")
 -  endif(NOT gflags_FOUND)
 -  message("-- Found Google Log (glog)." ${GLOG_GFLAGS_DEPENDENCY_MESSAGE})
-+  find_package(Glog REQUIRED)
++  find_package(glog REQUIRED)
  endif (MINIGLOG)
  
  if (NOT SCHUR_SPECIALIZATIONS)

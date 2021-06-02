@@ -43,7 +43,8 @@ class JxrlibConan(ConanFile):
         extracted_dir = glob.glob('jxrlib-*/')[0]
         os.rename(extracted_dir, self._source_subfolder)
         
-        os.remove(os.path.join(self._source_subfolder, "common/include/guiddef.h"))
+        if self.settings.os == "Windows":
+            os.remove(os.path.join(self._source_subfolder, "common/include/guiddef.h"))
 
     def _configure_cmake(self):
         if self._cmake:
